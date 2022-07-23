@@ -6,7 +6,6 @@ import threading
 import imutils
 import time
 import cv2
-import uvicorn
 from multiprocessing import Process, Queue
 import subprocess
 import numpy as np

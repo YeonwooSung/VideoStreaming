@@ -4,7 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
-from .api import rtsp, users, video
+from .api import rtsp, users, video, nlp
 
 
 app = FastAPI()
@@ -13,7 +13,7 @@ templates = Jinja2Templates(directory="views")
 
 #-------------------------------------------------------------
 # Include routers
-api_list = [rtsp, users, video]
+api_list = [rtsp, users, video, nlp]
 for api in api_list:
     app.include_router(api.router)
 #-------------------------------------------------------------
