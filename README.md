@@ -30,12 +30,12 @@ Also, FastAPI generates a "schema" with all your API using the OpenAPI standard 
 
 ## Functionality
 
+- [ ] Auth
+    * [ ] Log in
+    * [ ] Register
 - [ ] Real-time streaming
     * [x] RTSP
     * [ ] DASH
     * [ ] HLS
 - [x] Video downloading (only support MP4)
 - [ ] Video search (using NLP)
-- [ ] Auth
-    * [ ] Log in
-    * [ ] Register
