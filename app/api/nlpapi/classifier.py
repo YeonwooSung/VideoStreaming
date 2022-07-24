@@ -1,30 +1,24 @@
 import torch
 import torch.nn.functional as F
 
-from transformers import BertTokenizerFast
-from transformers import BertForSequenceClassification, AlbertForSequenceClassification
-    
+from transformers import AutoModelForSequenceClassification, AutoTokenizer, AutoConfig
+
 
 def classify(config) -> list:
-    saved_data = torch.load(
-        config.model_fn,
-        map_location='cpu' if config.gpu_id < 0 else 'cuda:%d' % config.gpu_id
-    )
-    train_config = saved_data['config']
-    bert_best = saved_data['bert']
-    index_to_label = saved_data['classes']
-
     lines = config.lines
+    index_to_label = config.labels
 
     with torch.no_grad():
         # Declare model and load pre-trained weights.
-        tokenizer = BertTokenizerFast.from_pretrained(train_config.pretrained_model_name)
-        model_loader = AlbertForSequenceClassification if train_config.use_albert else BertForSequenceClassification
+        tokenizer = AutoTokenizer.from_pretrained(config.model_fn, use_fast=True)
+        model_loader = AutoModelForSequenceClassification
+        config_model = AutoConfig.from_pretrained(config.model_fn)
         model = model_loader.from_pretrained(
-            train_config.pretrained_model_name,
-            num_labels=len(index_to_label)
+            config.model_fn,
+            num_labels=config.num_classes,
+            config=config_model,
         )
-        model.load_state_dict(bert_best)
+        model.load_state_dict(config.best_model_path)
 
         if config.gpu_id >= 0:
             model.cuda(config.gpu_id)
