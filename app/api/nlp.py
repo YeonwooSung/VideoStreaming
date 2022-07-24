@@ -7,15 +7,15 @@ from .nlpapi.preprocess import preprocess
 from .nlpapi.textData import InferenceText
 
 
-router = APIRouter()
+router = APIRouter(tags=["nlp"], prefix="/nlp")
 templates = Jinja2Templates(directory="views")
 
 
-@router.get("/nlp")
+@router.get("/")
 async def get_web_for_nlp(request: Request):
     return templates.TemplateResponse("nlp.html")
 
-@router.post("/nlp/inference")
+@router.post("/inference")
 async def get_inference_nlp(request: Request, text_list: List[InferenceText]):
     text_list = sorted(text_list, key=lambda text: text.id)
     lines_for_predict = []

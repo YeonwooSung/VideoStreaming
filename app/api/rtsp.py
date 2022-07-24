@@ -10,7 +10,7 @@ from multiprocessing import Process, Queue
 
 
 lock = threading.Lock()
-router = APIRouter()
+router = APIRouter(tags=["rtsp"], prefix="/rtsp")
 manager = None
 count_keep_alive = 0
 url_rtsp = 'rtsp://localhost:8123/ds-test'
@@ -56,11 +56,11 @@ def manager_keep_alive(p):
     manager = None
 
 
-@router.get("/rtsp")
+@router.get("/")
 async def video_feed():
     return StreamingResponse(streamer(), media_type="multipart/x-mixed-replace;boundary=frame")
 
-@router.get("/rtsp/stream")
+@router.get("/stream")
 async def stream():
     global manager
     global count_keep_alive
