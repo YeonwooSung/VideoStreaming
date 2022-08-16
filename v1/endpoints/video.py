@@ -83,15 +83,9 @@ def range_requests_response(request: Request, file_path: str, content_type: str)
 
 router = APIRouter(tags=["video"], prefix="/video")
 video_dir = '../../videos/'
-templates = Jinja2Templates(directory="views")
 
 
 @router.get("/")
-async def get_video_page(reqest: Request):
-    return templates.TemplateResponse("video.html")
-
-
-@router.get("/video")
 async def get_video(request: Request):
     video_name = request.query_params.get('video_name')
     if video_name is None:

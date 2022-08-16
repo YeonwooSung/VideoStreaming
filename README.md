@@ -2,6 +2,10 @@
 
 A simple web application server that provides the video streaming and video delivering services.
 
+## Useful notes
+
+[stackoverflow - fastapi mvc pattern example](https://stackoverflow.com/a/64987404/9012940)
+
 ## Environment
 
 Virtualenv has been used for configuring the environment.
