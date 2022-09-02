@@ -2,6 +2,10 @@
 
 A simple web application server that provides the video streaming and video delivering services.
 
+## Useful notes
+
+[stackoverflow - fastapi mvc pattern example](https://stackoverflow.com/a/64987404/9012940)
+
 ## Environment
 
 Virtualenv has been used for configuring the environment.
@@ -30,12 +34,6 @@ Also, FastAPI generates a "schema" with all your API using the OpenAPI standard 
 
 ## Functionality
 
-- [ ] Auth
-    * [ ] Log in
-    * [ ] Register
-- [ ] Real-time streaming
-    * [x] RTSP
-    * [ ] DASH
-    * [ ] HLS
+- [x] Real-time streaming
+- [x] Video streaming with chunking
 - [x] Video downloading (only support MP4)
-- [ ] Video search (using NLP)
